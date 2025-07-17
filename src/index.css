@@ -105,4 +105,93 @@
   .font-cormorant {
     font-family: "Cormorant Garamond", serif;
   }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes shooting-star {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px) translateY(-100px);
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(300px) translateY(300px);
+    }
+  }
+
+  @keyframes nebula {
+    0% {
+      transform: rotate(0deg) scale(1);
+      opacity: 0.3;
+    }
+    33% {
+      transform: rotate(120deg) scale(1.1);
+      opacity: 0.5;
+    }
+    66% {
+      transform: rotate(240deg) scale(0.9);
+      opacity: 0.4;
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes constellation-pulse {
+    0% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0.4;
+    }
+  }
+
+  .star-small {
+    animation: twinkle 2s ease-in-out infinite;
+  }
+
+  .star-medium {
+    animation: twinkle 3s ease-in-out infinite;
+  }
+
+  .star-large {
+    animation: twinkle 4s ease-in-out infinite;
+  }
+
+  .shooting-star {
+    animation: shooting-star 3s linear infinite;
+  }
+
+  .nebula {
+    animation: nebula 20s linear infinite;
+  }
+
+  .constellation-line {
+    animation: constellation-pulse 4s ease-in-out infinite;
+  }
+
+  /* Gradient utilities */
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
 }

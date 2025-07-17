@@ -82,56 +82,102 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Header */}
-      <div className="relative overflow-hidden">
-        {/* Background stars */}
-        <div className="absolute inset-0 opacity-30">
-          {[...Array(50)].map((_, i) => (
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900 to-black">
+      {/* Cosmic background */}
+      <div className="fixed inset-0 z-0">
+        {/* Nebula effect */}
+        <div className="absolute inset-0 bg-gradient-radial from-purple-900/20 via-indigo-900/10 to-transparent nebula"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-radial from-blue-900/30 via-purple-900/20 to-transparent rounded-full nebula" style={{animationDelay: '5s'}}></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-radial from-pink-900/20 via-purple-900/15 to-transparent rounded-full nebula" style={{animationDelay: '10s'}}></div>
+        
+        {/* Stars of different sizes */}
+        {[...Array(200)].map((_, i) => {
+          const size = Math.random();
+          const starClass = size > 0.8 ? 'star-large' : size > 0.5 ? 'star-medium' : 'star-small';
+          const starSize = size > 0.8 ? 'w-2 h-2' : size > 0.5 ? 'w-1.5 h-1.5' : 'w-1 h-1';
+          return (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+              className={`absolute ${starSize} bg-white rounded-full ${starClass}`}
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 2}s`,
+                animationDelay: `${Math.random() * 4}s`,
               }}
             />
-          ))}
-        </div>
+          );
+        })}
+        
+        {/* Shooting stars */}
+        {[...Array(3)].map((_, i) => (
+          <div
+            key={`shooting-${i}`}
+            className="absolute w-1 h-1 bg-white rounded-full shooting-star"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 10}s`,
+            }}
+          />
+        ))}
+        
+        {/* Constellation lines */}
+        <svg className="absolute inset-0 w-full h-full">
+          {/* Constellation 1 */}
+          <line x1="20%" y1="30%" x2="25%" y2="35%" stroke="rgba(255,255,255,0.3)" strokeWidth="1" className="constellation-line" />
+          <line x1="25%" y1="35%" x2="30%" y2="28%" stroke="rgba(255,255,255,0.3)" strokeWidth="1" className="constellation-line" />
+          <line x1="30%" y1="28%" x2="35%" y2="32%" stroke="rgba(255,255,255,0.3)" strokeWidth="1" className="constellation-line" />
+          
+          {/* Constellation 2 */}
+          <line x1="70%" y1="20%" x2="75%" y2="25%" stroke="rgba(255,255,255,0.3)" strokeWidth="1" className="constellation-line" />
+          <line x1="75%" y1="25%" x2="80%" y2="20%" stroke="rgba(255,255,255,0.3)" strokeWidth="1" className="constellation-line" />
+          <line x1="80%" y1="20%" x2="85%" y2="28%" stroke="rgba(255,255,255,0.3)" strokeWidth="1" className="constellation-line" />
+          
+          {/* Constellation 3 */}
+          <line x1="60%" y1="70%" x2="65%" y2="75%" stroke="rgba(255,255,255,0.3)" strokeWidth="1" className="constellation-line" />
+          <line x1="65%" y1="75%" x2="70%" y2="72%" stroke="rgba(255,255,255,0.3)" strokeWidth="1" className="constellation-line" />
+          <line x1="70%" y1="72%" x2="75%" y2="78%" stroke="rgba(255,255,255,0.3)" strokeWidth="1" className="constellation-line" />
+        </svg>
+      </div>
+
+      {/* Header */}
+      <div className="relative z-10 overflow-hidden">
+        {/* Cosmic dust overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent"></div>
         
         <div className="relative container mx-auto px-4 py-16 text-center">
           <div className="mb-8">
-            <h1 className="font-cormorant text-6xl font-bold text-white mb-4">
+            <h1 className="font-cormorant text-6xl font-bold text-white mb-4 drop-shadow-2xl">
               Сергей Николаевич Иванов
             </h1>
-            <div className="text-2xl text-amber-300 mb-2">
-              10 мая 1965 — 22 ноября 2019
+            <div className="text-3xl text-yellow-300 mb-4 drop-shadow-lg">
+              ⭐ 10 мая 1965 — 22 ноября 2019 ⭐
             </div>
-            <div className="text-lg text-purple-200 flex items-center justify-center gap-2">
+            <div className="text-lg text-cyan-200 flex items-center justify-center gap-2">
               <Icon name="MapPin" size={20} />
-              Новодевичье кладбище, участок Б-8-12
+              🪐 Новодевичье кладбище, участок Б-8-12
             </div>
           </div>
           
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+            <div className="bg-black/30 backdrop-blur-md rounded-2xl p-8 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20">
               <div className="flex flex-col md:flex-row gap-8 items-center">
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 relative">
+                  <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full opacity-75 blur animate-pulse"></div>
                   <img 
                     src="/img/d4df52c8-9c63-4cac-8a77-534afe425033.jpg" 
                     alt="Сергей Иванов" 
-                    className="w-48 h-48 rounded-full object-cover border-4 border-amber-300 shadow-2xl"
+                    className="relative w-48 h-48 rounded-full object-cover border-4 border-cyan-300 shadow-2xl shadow-cyan-500/50"
                   />
                 </div>
                 <div className="text-left">
-                  <p className="text-xl text-white leading-relaxed mb-4">
-                    Выдающийся физик-теоретик, заслуженный деятель науки, 
+                  <p className="text-xl text-white leading-relaxed mb-4 drop-shadow-md">
+                    ✨ Выдающийся физик-теоретик, заслуженный деятель науки, 
                     любящий отец и муж. Посвятил свою жизнь изучению квантовой механики 
                     и воспитанию нового поколения ученых.
                   </p>
-                  <p className="text-lg text-purple-200">
-                    «Наука - это не только знание, но и мудрость, 
+                  <p className="text-lg text-cyan-200 drop-shadow-sm">
+                    🌟 «Наука - это не только знание, но и мудрость, 
                     которая должна служить человечеству» - его жизненное кредо.
                   </p>
                 </div>
@@ -142,36 +188,36 @@ const Index = () => {
       </div>
 
       {/* Timeline */}
-      <div className="container mx-auto px-4 py-16">
-        <h2 className="font-cormorant text-4xl font-bold text-center text-white mb-12">
-          Хронология жизни
+      <div className="relative z-10 container mx-auto px-4 py-16">
+        <h2 className="font-cormorant text-5xl font-bold text-center text-white mb-12 drop-shadow-2xl">
+          ⏳ Звездный путь жизни
         </h2>
         
         <div className="max-w-4xl mx-auto">
           <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-amber-300 to-purple-500"></div>
+            {/* Cosmic timeline line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-2 h-full bg-gradient-to-b from-cyan-400 via-purple-500 to-pink-500 rounded-full shadow-lg shadow-cyan-500/50"></div>
             
             {timelineEvents.map((event, index) => (
-              <div key={event.id} className={`relative flex items-center mb-12 ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                <Card className={`w-5/12 ${index % 2 === 0 ? 'mr-auto' : 'ml-auto'} bg-white/10 backdrop-blur-md border-white/20`}>
+              <div key={event.id} className={`relative flex items-center mb-16 ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
+                <Card className={`w-5/12 ${index % 2 === 0 ? 'mr-auto' : 'ml-auto'} bg-black/40 backdrop-blur-md border-cyan-500/30 shadow-xl shadow-cyan-500/20`}>
                   <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-3">
-                      <Badge variant="secondary" className="bg-amber-300 text-slate-900 font-semibold">
-                        {event.year}
+                      <Badge variant="secondary" className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black font-bold text-lg px-3 py-1">
+                        ⭐ {event.year}
                       </Badge>
                       <h3 className="font-cormorant text-xl font-semibold text-white">
                         {event.event}
                       </h3>
                     </div>
-                    <p className="text-purple-200">
+                    <p className="text-cyan-200">
                       {event.description}
                     </p>
                   </CardContent>
                 </Card>
                 
-                {/* Timeline dot */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-amber-300 rounded-full border-4 border-slate-900 shadow-lg"></div>
+                {/* Cosmic timeline dot */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full border-4 border-black shadow-lg shadow-cyan-500/50 animate-pulse"></div>
               </div>
             ))}
           </div>
@@ -179,33 +225,38 @@ const Index = () => {
       </div>
 
       {/* Materials */}
-      <div className="container mx-auto px-4 py-16">
-        <h2 className="font-cormorant text-4xl font-bold text-center text-white mb-12">
-          Дополнительные материалы
+      <div className="relative z-10 container mx-auto px-4 py-16">
+        <h2 className="font-cormorant text-5xl font-bold text-center text-white mb-12 drop-shadow-2xl">
+          🛸 Космические артефакты
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {materials.map((material) => (
-            <Card key={material.id} className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300">
+            <Card key={material.id} className="bg-black/40 backdrop-blur-md border-cyan-500/30 hover:bg-black/60 hover:border-cyan-400/50 transition-all duration-300 shadow-xl shadow-cyan-500/20">
               <CardContent className="p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <Icon 
-                    name={material.type === 'photo' ? 'Image' : material.type === 'newspaper' ? 'Newspaper' : 'FileText'} 
-                    size={24} 
-                    className="text-amber-300"
-                  />
+                  <div className="p-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full">
+                    <Icon 
+                      name={material.type === 'photo' ? 'Image' : material.type === 'newspaper' ? 'Newspaper' : 'FileText'} 
+                      size={20} 
+                      className="text-black"
+                    />
+                  </div>
                   <h3 className="font-cormorant text-xl font-semibold text-white">
                     {material.title}
                   </h3>
                 </div>
-                <p className="text-purple-200 mb-4">
+                <p className="text-cyan-200 mb-4">
                   {material.description}
                 </p>
-                <img 
-                  src={material.url} 
-                  alt={material.title}
-                  className="w-full h-40 object-cover rounded-lg border border-white/20"
-                />
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-lg opacity-30 blur"></div>
+                  <img 
+                    src={material.url} 
+                    alt={material.title}
+                    className="relative w-full h-40 object-cover rounded-lg border border-cyan-500/30"
+                  />
+                </div>
               </CardContent>
             </Card>
           ))}
@@ -213,52 +264,52 @@ const Index = () => {
       </div>
 
       {/* Family Tree */}
-      <div className="container mx-auto px-4 py-16">
+      <div className="relative z-10 container mx-auto px-4 py-16">
         <div className="flex items-center justify-center gap-4 mb-12">
-          <h2 className="font-cormorant text-4xl font-bold text-white">
-            Генеалогическое дерево
+          <h2 className="font-cormorant text-5xl font-bold text-white drop-shadow-2xl">
+            🌌 Созвездие семьи
           </h2>
           <Dialog open={isAddingMember} onOpenChange={setIsAddingMember}>
             <DialogTrigger asChild>
-              <Button size="sm" className="bg-amber-300 hover:bg-amber-400 text-slate-900">
+              <Button size="sm" className="bg-gradient-to-r from-cyan-400 to-purple-400 hover:from-cyan-500 hover:to-purple-500 text-black font-bold">
                 <Icon name="Plus" size={16} className="mr-2" />
-                Добавить родственника
+                ⭐ Новая звезда
               </Button>
             </DialogTrigger>
-            <DialogContent className="bg-slate-900 border-white/20">
+            <DialogContent className="bg-black/80 border-cyan-500/30 backdrop-blur-md">
               <DialogHeader>
-                <DialogTitle className="text-white">Добавить члена семьи</DialogTitle>
+                <DialogTitle className="text-white font-cormorant text-2xl">🌟 Добавить звезду в созвездие</DialogTitle>
               </DialogHeader>
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="name" className="text-white">Имя</Label>
+                  <Label htmlFor="name" className="text-cyan-200">Имя</Label>
                   <Input
                     id="name"
                     value={newMember.name}
                     onChange={(e) => setNewMember({...newMember, name: e.target.value})}
-                    className="bg-white/10 border-white/20 text-white"
+                    className="bg-black/40 border-cyan-500/30 text-white"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="relation" className="text-white">Родство</Label>
+                  <Label htmlFor="relation" className="text-cyan-200">Родство</Label>
                   <Input
                     id="relation"
                     value={newMember.relation}
                     onChange={(e) => setNewMember({...newMember, relation: e.target.value})}
-                    className="bg-white/10 border-white/20 text-white"
+                    className="bg-black/40 border-cyan-500/30 text-white"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="dates" className="text-white">Даты жизни</Label>
+                  <Label htmlFor="dates" className="text-cyan-200">Даты жизни</Label>
                   <Input
                     id="dates"
                     value={newMember.dates}
                     onChange={(e) => setNewMember({...newMember, dates: e.target.value})}
-                    className="bg-white/10 border-white/20 text-white"
+                    className="bg-black/40 border-cyan-500/30 text-white"
                   />
                 </div>
-                <Button onClick={handleAddMember} className="w-full bg-amber-300 hover:bg-amber-400 text-slate-900">
-                  Добавить
+                <Button onClick={handleAddMember} className="w-full bg-gradient-to-r from-cyan-400 to-purple-400 hover:from-cyan-500 hover:to-purple-500 text-black font-bold">
+                  🌟 Добавить звезду
                 </Button>
               </div>
             </DialogContent>
@@ -266,13 +317,13 @@ const Index = () => {
         </div>
         
         <div className="max-w-6xl mx-auto">
-          <div className="bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-            <p className="text-center text-purple-200 mb-8">
-              Связи между душами, объединенные любовью и памятью
+          <div className="bg-black/30 backdrop-blur-md rounded-2xl p-8 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20">
+            <p className="text-center text-cyan-200 mb-8 font-cormorant text-xl">
+              ✨ Связи между душами, объединенные любовью и памятью ✨
             </p>
             
             <div className="relative h-96 overflow-hidden">
-              {/* Connection lines */}
+              {/* Cosmic connection lines */}
               <svg className="absolute inset-0 w-full h-full">
                 {familyMembers.map((member, index) => 
                   familyMembers.slice(index + 1).map((otherMember) => (
@@ -282,28 +333,38 @@ const Index = () => {
                       y1={`${member.y}%`}
                       x2={`${otherMember.x}%`}
                       y2={`${otherMember.y}%`}
-                      stroke="rgb(192, 132, 252)"
+                      stroke="url(#gradient-line)"
                       strokeWidth="2"
                       strokeDasharray="5,5"
-                      opacity="0.5"
+                      opacity="0.7"
+                      className="constellation-line"
                     />
                   ))
                 )}
+                <defs>
+                  <linearGradient id="gradient-line" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="rgb(34, 211, 238)" />
+                    <stop offset="100%" stopColor="rgb(168, 85, 247)" />
+                  </linearGradient>
+                </defs>
               </svg>
               
-              {/* Family members */}
+              {/* Family members as stars */}
               {familyMembers.map((member) => (
                 <div
                   key={member.id}
                   className="absolute transform -translate-x-1/2 -translate-y-1/2 text-center"
                   style={{ left: `${member.x}%`, top: `${member.y}%` }}
                 >
-                  <div className={`w-20 h-20 rounded-full ${getRelationColor(member.relation)} flex items-center justify-center mb-2 shadow-lg animate-pulse`}>
-                    <Icon name="User" size={32} className="text-white" />
+                  <div className="relative">
+                    <div className={`absolute -inset-2 ${getRelationColor(member.relation)} rounded-full opacity-30 blur animate-pulse`}></div>
+                    <div className={`relative w-20 h-20 rounded-full ${getRelationColor(member.relation)} flex items-center justify-center mb-2 shadow-lg shadow-cyan-500/50 border-2 border-cyan-300`}>
+                      <span className="text-2xl">⭐</span>
+                    </div>
                   </div>
-                  <div className="text-white text-sm font-medium">{member.name}</div>
-                  <div className="text-purple-200 text-xs">{member.relation}</div>
-                  <div className="text-amber-300 text-xs">{member.dates}</div>
+                  <div className="text-white text-sm font-medium drop-shadow-md">{member.name}</div>
+                  <div className="text-cyan-200 text-xs">{member.relation}</div>
+                  <div className="text-yellow-300 text-xs">{member.dates}</div>
                 </div>
               ))}
             </div>
@@ -311,20 +372,20 @@ const Index = () => {
             <div className="mt-8 flex justify-center">
               <div className="flex gap-6 text-sm">
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-purple-600 rounded-full"></div>
-                  <span className="text-purple-200">Душа усопшего</span>
+                  <div className="w-4 h-4 bg-purple-600 rounded-full border border-cyan-300"></div>
+                  <span className="text-cyan-200">🪐 Душа усопшего</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-pink-500 rounded-full"></div>
-                  <span className="text-purple-200">Супруг(а)</span>
+                  <div className="w-4 h-4 bg-pink-500 rounded-full border border-cyan-300"></div>
+                  <span className="text-cyan-200">💝 Супруг(а)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-                  <span className="text-purple-200">Дети</span>
+                  <div className="w-4 h-4 bg-blue-500 rounded-full border border-cyan-300"></div>
+                  <span className="text-cyan-200">👶 Дети</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                  <span className="text-purple-200">Родители</span>
+                  <div className="w-4 h-4 bg-green-500 rounded-full border border-cyan-300"></div>
+                  <span className="text-cyan-200">👨‍👩‍👧‍👦 Родители</span>
                 </div>
               </div>
             </div>
@@ -333,29 +394,32 @@ const Index = () => {
       </div>
 
       {/* Location */}
-      <div className="container mx-auto px-4 py-16">
-        <h2 className="font-cormorant text-4xl font-bold text-center text-white mb-12">
-          Место упокоения
+      <div className="relative z-10 container mx-auto px-4 py-16">
+        <h2 className="font-cormorant text-5xl font-bold text-center text-white mb-12 drop-shadow-2xl">
+          🏛️ Место вечного покоя
         </h2>
         
         <div className="max-w-4xl mx-auto">
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="bg-black/40 backdrop-blur-md border-cyan-500/30 shadow-2xl shadow-cyan-500/20">
             <CardContent className="p-8">
               <div className="flex items-center gap-4 mb-6">
-                <Icon name="MapPin" size={32} className="text-amber-300" />
+                <div className="p-3 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full">
+                  <Icon name="MapPin" size={32} className="text-black" />
+                </div>
                 <div>
-                  <h3 className="font-cormorant text-2xl font-semibold text-white">
+                  <h3 className="font-cormorant text-3xl font-semibold text-white">
                     Новодевичье кладбище
                   </h3>
-                  <p className="text-purple-200">Участок Б-8-12</p>
+                  <p className="text-cyan-200 text-lg">🌌 Участок Б-8-12</p>
                 </div>
               </div>
               
-              <div className="bg-white/5 rounded-lg p-6 border border-white/10">
-                <div className="flex items-center justify-center h-64 text-purple-200">
+              <div className="bg-black/30 rounded-lg p-6 border border-cyan-500/20 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/20 to-purple-900/20"></div>
+                <div className="relative flex items-center justify-center h-64 text-cyan-200">
                   <div className="text-center">
-                    <Icon name="Map" size={64} className="mx-auto mb-4 text-amber-300" />
-                    <p className="text-lg">Карта местоположения</p>
+                    <div className="text-6xl mb-4">🗺️</div>
+                    <p className="text-xl font-cormorant">Космическая карта местоположения</p>
                     <p className="text-sm">Интерактивная карта будет добавлена</p>
                   </div>
                 </div>
@@ -363,12 +427,12 @@ const Index = () => {
               
               <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-center gap-3">
-                  <Icon name="Clock" size={20} className="text-amber-300" />
-                  <span className="text-purple-200">Время посещения: 9:00 - 18:00</span>
+                  <Icon name="Clock" size={20} className="text-cyan-400" />
+                  <span className="text-cyan-200">⏰ Время посещения: 9:00 - 18:00</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Icon name="Phone" size={20} className="text-amber-300" />
-                  <span className="text-purple-200">Справки: +7 (495) 123-45-67</span>
+                  <Icon name="Phone" size={20} className="text-cyan-400" />
+                  <span className="text-cyan-200">📞 Справки: +7 (495) 123-45-67</span>
                 </div>
               </div>
             </CardContent>
